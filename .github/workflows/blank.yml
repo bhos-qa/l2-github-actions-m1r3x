@@ -1,0 +1,23 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [ "develop" ]
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Permission
+        run: chmod +x ./gradlew
+
+      - name: Run gradle test
+        run: ./gradlew test
+
+      - name: Build app
+        run: ./gradlew build
